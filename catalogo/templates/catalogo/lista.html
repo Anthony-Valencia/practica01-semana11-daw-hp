@@ -1,0 +1,21 @@
+<!-- catalogo/templates/catalogo/lista.html -->
+{% extends "base.html" %} {% block title %}Catálogo | Café Aurora{% endblock %}
+{% block header_title %}Catálogo de Productos{% endblock %} {% block content %}
+{% if productos %}
+<p>Mostrando <strong>{{ productos|length }}</strong> productos disponibles.</p>
+
+{% for producto in productos %}
+<div class="producto">
+  <h3>{{ producto.nombre|title }}</h3>
+  <p class="precio">S/ {{ producto.precio }}</p>
+  <p>{{ producto.descripcion|default:"Sin descripción." }}</p>
+  <p>Stock: {{ producto.stock }} unidades</p>
+  <p><small>Publicado: {{ producto.fecha_creacion|date:"d M Y" }}</small></p>
+
+  {% if producto.stock == 0 %}
+  <p class="no-disponible">Agotado temporalmente</p>
+  {% endif %}
+</div>
+{% endfor %} {% else %}
+<p>No hay productos disponibles en este momento.</p>
+{% endif %} {% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block title %}Inicio | Café Aurora{% endblock %}
+{%block content %}
+<h2>{{ titulo|title }}</h2>
+<p>Los productos más recientes de nuestra cafetería:</p>
+
+{% if ultimos_productos %} {% for producto in ultimos_productos %}
+<div class="producto">
+  <h3>{{ producto.nombre|title }}</h3>
+  <p class="precio">S/ {{ producto.precio }}</p>
+  <p>{{ producto.descripcion|truncatewords:15 }}</p>
+  <p>Creado el {{ producto.fecha_creacion|date:"d/m/Y" }}</p>
+</div>
+{% endfor %} {% else %}
+<p>No hay productos aún. Vuelve pronto.</p>
+{% endif %} {% endblock %}

@@ -1,0 +1,69 @@
+<!-- catalogo/templates/base.html -->
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Café Aurora{% endblock %}</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 2rem;
+        background: #faf7f2;
+        color: #3e2723;
+      }
+      header {
+        border-bottom: 2px solid #6d4c41;
+        padding-bottom: 1rem;
+      }
+      nav a {
+        margin-right: 1rem;
+        color: #6d4c41;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      nav a:hover {
+        text-decoration: underline;
+      }
+      .producto {
+        background: #fff;
+        border: 1px solid #d7ccc8;
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 8px;
+      }
+      .precio {
+        color: #bf360c;
+        font-weight: bold;
+        font-size: 1.2em;
+      }
+      .no-disponible {
+        color: #9e9e9e;
+        text-decoration: line-through;
+      }
+      footer {
+        margin-top: 2rem;
+        font-size: 0.9em;
+        color: #8d6e63;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>{% block header_title %}Café Aurora{% endblock %}</h1>
+      <nav>
+        <a href="{% url 'home' %}">Inicio</a>
+        <a href="{% url 'catalogo:lista' %}">Catálogo</a>
+      </nav>
+    </header>
+
+    <main>
+      {% block content %}
+      <!-- El contenido de cada página va aquí -->
+      {% endblock %}
+    </main>
+
+    <footer>
+      <p>&copy; {% now "Y" %} Café Aurora. Todos los derechos reservados.</p>
+    </footer>
+  </body>
+</html>
